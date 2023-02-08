@@ -1,0 +1,196 @@
+/* 폰트 */
+
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html > body{
+	font-family: 'GowunDodum-Regular';
+}
+
+/* 라이브러리 */
+/*
+.flex-grid {
+	display:flex;
+	flex-wrap:wrap;
+	--y-gap:0px;
+	--x-gap:0px;
+	--cc:5;
+	gap:var(--y-gap) var(--x-gap);
+}
+
+.flex-grid > * {
+	width:calc(100% / var(--cc) - (var(--x-gap) * (var(--cc) - 1)) / var(--cc));
+}
+*/
+.con-min-width{
+    min-width:1080px;
+}
+.con{
+	max-width:1080px;
+	margin-left:auto;
+    margin-right:auto;
+}
+
+
+/* 커스텀 */
+
+/**/
+/* 최상단바 */
+.top-area {
+    height:40px;
+}
+.top-area > div  ul > li > a > span{
+    color: #888888;
+    font-size:13px;
+}
+
+.boundary{
+    margin: 0 12px;
+    color:#e6e6e6;
+}
+
+.selling_menu {
+    display:none;
+    width: 92px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
+    border: solid 1px #e6e6e6;
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: left;
+    position: absolute;
+    top: 20px;
+    left: -18px;
+    z-index: 999;
+    box-sizing: border-box;
+}
+.selling{
+    position:relative;
+  }
+
+.selling > .selling_menu{
+
+    line-height: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #555;
+    }
+.selling:hover > .selling_menu{
+    display:block;
+}
+
+/* 최상단바 끝*/
+
+/*로고 영역 시작 */
+.logo-area{
+    height:120px;
+}
+
+.header-search {
+    margin-left : 40px;
+}
+
+.header-search > .search-box{
+    position: relative;
+    top: -2px;
+    width: 400px;
+    border-bottom: 3px solid #333;
+}
+
+.text-box {
+    width:360px;
+}
+
+.logo_area__icon_box {
+}
+
+.icon > img{
+    text-align: center;
+}
+
+
+/*로고 영역 끝 */
+
+/*메뉴박스 시작*/
+.menu-area{
+    position: relative;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #1f1f2c;
+    min-width: 1360px;
+    height:66px;
+}
+
+
+.product-menu > ul > li > div{
+	position:absolute;
+	display:none;
+	left:0;
+	right:0;
+	width:100%;
+	background-color: white;
+	transform:translateY(1px);
+	padding-bottom:50px;
+	border-bottom: 1px solid #1f1f2c;
+	z-index: 8500;
+}
+
+.product-menu> ul > li:hover > div {
+	display:block;
+}
+.product-menu> ul > li:hover > a {
+	color:red;
+}
+
+.second-menu > div > ul > li {
+    margin-top:20px;
+}
+
+.second-menu > div > ul > li > a{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.second-menu ul ul > li{
+    padding:5 0px;
+}
+.second-menu ul ul > li > a{
+    font-size:14px;
+}
+.second-menu ul ul > li:hover > a{
+    color:red;
+}
+
+
+.sub-line{
+    width: 15px;
+    height: 1px;
+    margin: 5px 0 14px 0;
+    background-color: #d01f3c;
+}
+
+nav > ul > li{
+    padding:0 3px;
+}
+
+nav > ul > li > a{
+    display:flex;
+    height:100%;
+    align-items: center;
+    padding:0 10px;
+    font-size:18px;
+    font-weight:bold;
+}
+/*메뉴박스 끝*/
+
+.table-box-type-1 table {
+    width:100%;
+}
+
+.table-box-type-1 th,
+.table-box-type-1 td {
+    border: 1px solid black;
+}

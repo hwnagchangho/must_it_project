@@ -1,0 +1,27 @@
+server:
+  port: 8081
+spring:
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: ENC(fxy68nBKdt1/52wH43bj6+UbJvI0rmMWap0FyvQ4Rhg=)
+    password: ENC(eWuFE7x84FZO5aQviDpu4nu2D8A/lWRH)
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  profiles:
+    active: dev
+  devtools:
+    livereload:
+      enabled: true
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+    static-location: classpath:/static/
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    # driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:mariadb://127.0.0.1:3306/must_it_project?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: ENC(/YZG7Mr9IpCWm8eCuRdT6g==)
+    password: ENC(Lw/c1BeBuWqnwttW8WpnlqPFrQKj+/SX)

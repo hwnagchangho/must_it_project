@@ -1,0 +1,78 @@
+/*사진*/
+.product-detail .product-detail__picture > img{
+    width:500px;
+}
+
+/*내용*/
+.product-detail__body > .detail {
+    width: 540px;
+    margin-left : 40px;
+}
+
+.product-detail__body > .detail > .item_brand{
+    font-weight:bold;
+    font-size:30px;
+
+}
+/*가격*/
+.product-detail__body > .detail > .item_price_box{
+    display:flex;
+    align-items : center;
+    margin: 30px 0px;
+}
+.product-detail__body > .detail > .item_price_box > .price{
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin-left:5px;
+}
+
+.product-detail__body > .detail > .item_price_box > .discount{
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    margin-left:5px;
+}
+
+/*판매자정보*/
+.product-detail__body > .detail > .item-seller{
+    display:flex;
+    margin:30px 0px;
+}
+
+.product-detail__body > .detail > .item-seller span{
+    margin-top:5px;
+}
+
+.product-detail__body > .detail > .item-seller .installment{
+    margin-left:30px;
+}
+
+.product-detail__body > .detail > .item-seller .delivery{
+    margin-left:46px;
+}
+
+.product-detail__body > .detail > .item-seller .sellerName{
+    margin-left:62px;
+}
+/*주문선택사항*/
+.product-detail__body > .detail > .order-select{
+    display:block;
+    margin:30px 0px;
+}
+.product-detail__body > .detail > .order-select .select{
+    border:1px solid #888888;
+    margin-left:20px;
+}
+
+.product-detail__body > .detail > .order{
+    display:block;
+    margin:30px 0px;
+}
+
+.product-detail__body > .detail > .order >  box{
+}
+
+.product-detail__body > .detail > .order >  buy{
+    background-color:red;
+}

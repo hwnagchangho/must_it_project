@@ -1,0 +1,21 @@
+.top_welcome {
+    margin: 70px 0 50px;
+    text-align: center;
+}
+.top_welcome > span{
+    font-size: 32px;
+    font-weight: 600;
+    color: #222;
+    vertical-align: -10px;
+}
+
+.login-area__top{
+    text-align:center
+}
+
+.login-area__top > span{
+    font-size:20px;
+    font-weight:bold;
+    border:3px solid black;
+    border-radius:10px;
+}

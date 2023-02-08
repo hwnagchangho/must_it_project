@@ -1,0 +1,59 @@
+/*top*/
+.footer_n{
+    text-align: left;
+    border-top: 1px solid #333;
+    font-size: 12px;
+    color: #888;
+}
+
+.footer_n > .b_bottom_bf{
+    border-bottom: 1px solid #333;
+}
+
+.footer_n > .b_bottom_bf > .footer_top{
+    width: 1080px;
+    height: 64px;
+    margin: 0 auto;
+}
+
+.footer_n > .b_bottom_bf > .footer_top > .footer_left{
+    font-size: 14px;
+    color: #222;
+}
+
+.footer_n > .b_bottom_bf > .footer_top > .footer_right > a{
+    font-size:20px;
+    margin:0 8px;
+}
+
+/*top 끝*/
+
+/*mid 시작*/
+
+.footer_mid{
+    margin-top:30px;
+}
+
+/*왼쪽*/
+
+
+.footer_left_contents > .footer-logo {
+    width:150px;
+}
+
+.footer_mid > .footer_left_contents > .footer-txt > .footer-txt-left{
+    width:440px;
+}
+
+.footer_mid > .footer_left_contents > .footer-txt > .footer-txt-left > span{
+    font-size:20px;
+    font-weight:bold;
+}
+
+/*오른쪽*/
+.footer_right_contents > .qr_app > span > img{
+    width:44px;
+}
+.footer_right_contents > a > img{
+    width:220px;
+}

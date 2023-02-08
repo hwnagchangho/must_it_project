@@ -1,0 +1,443 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>${pageTitle}</title>
+
+  <!-- 제이쿼리 불러오기 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- 테일윈드 불러오기 -->
+  <!-- 노말라이즈, 라이브러리까지 한방에 해결 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+
+  <!-- 데이지 UI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.40.1/dist/full.css" rel="stylesheet" type="text/css" />
+
+  <!-- swiper 불러오기  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+  <!-- font-awesome 불러오기 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+  <!-- 사이트 공통 css -->
+  <link rel="stylesheet" href="/static/css/common.css">
+  <!-- 사이트 공통 js -->
+  <script src="/static/js/common.js" defer></script>
+  <!-- 스마트에디터 불러오기  -->
+  <script type="text/javascript" src="/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
+
+  <!-- 주소api -->
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+</head>
+<body>
+  <heaeder>
+    <!-- 최상단바   -->
+    <div class="top-area">
+      <div class="con flex h-full items-center">
+        <ul class="flex">
+          <li>
+            <a href="#" class="flex h-full">
+              <span class="hover:underline cursor-pointer">No.1 온라인 명품 플랫폼</span>
+            </a>
+          </li>
+        </ul>
+        <div class="flex-grow"></div>
+        <ul class="flex">
+          <c:if test="${!rq.isLogined()}">
+            <li>
+              <a href="/usr/member/login">
+                <span class="hover:underline cursor-pointer">로그인</span>
+                <span class="boundary">|</span>
+              </a>
+            </li>
+          </c:if>
+          <c:if test="${rq.isLogined()}">
+            <li>
+              <a href="/usr/member/myPage">
+                <span class="hover:underline cursor-pointer">${rq.loginedMember.nickname}'s Profile</span>
+                <span class="boundary">|</span>
+              </a>
+            </li>
+          </c:if>
+          <c:if test="${rq.isLogined()}">
+            <li>
+              <a href="/usr/member/doLogout">
+                <span class="hover:underline cursor-pointer">로그아웃</span>
+                <span class="boundary">|</span>
+              </a>
+            </li>
+          </c:if>
+          <c:if test="${!rq.isLogined()}">
+          <li>
+            <a href="/usr/member/join">
+              <span class="hover:underline cursor-pointer">회원가입</span>
+              <span class="boundary">|</span>
+            </a>
+          </li>
+          </c:if>
+          <li>
+            <a href="#">
+              <span class="hover:underline cursor-pointer">멤버쉽</span>
+              <span class="boundary">|</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="hover:underline cursor-pointer">서비스센터</span>
+              <span class="boundary">|</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="selling">
+              <span class="hover:underline cursor-pointer">판매하기▼</span>
+              <ul class="selling_menu">
+                <li>상품등록</li>
+                <li>내 미니샵</li>
+                <li>판매 가이드</li>
+              </ul>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 로고영역   -->
+    <div class="logo-area">
+      <div class="con logo-area__inner-box flex h-full flex-wrap  w-full">
+        <a href="/" class="logo-area__main-logo flex items-center">
+          <img src="https://static-ux.mustit.co.kr/img/front/bi/main_logo.svg" alt="mustit">
+        </a>
+        <div class="header-search flex items-center flex-1">
+          <div class="search-box">
+            <form id="header_search_form" method="get" action="/product/search" onsubmit="return fnChkForm(this);">
+              <input type="hidden" name="search_action" value="search">
+              <input type="hidden" id="event" name="event" value="1">
+              <input type="hidden" id="event_no" name="event_no" value="1869">
+              <input type="text" id="head_keyword" name="keyword" placeholder="내용을 입력해주세요." value="" class="text-box" onclick="chk_first_search(this);" autocomplete="off" onkeyup="viewRelatedKeword(this.value,event);" style="color: rgb(170, 170, 170);">
+              <span class="btn_inner_box">
+									<input type="image" src="https://static-ux.mustit.co.kr/img/front/header/icon_header_search.svg" class="search_btn" alt="검색">
+								</span>
+              <input type="hidden" id="mustit_tracking_code" name="click" value="all_productsearch">
+            </form>
+          </div>
+        </div>
+        <div class="logo_area__icon_box flex items-center">
+          <div class="icon px-2">
+            <a href="/usr/member/myPage">
+            <span class="flex justify-center">
+              <img src="https://static-ux.mustit.co.kr/img/front/header/icon_header_mypage.svg" alt="마이페이지">
+            </span>
+              <p>
+                마이페이지
+              </p>
+            </a>
+          </div>
+          <div class="icon px-2">
+            <a href="/usr/cart/list?userId=${rq.loginedMember.id}">
+              <span class="flex justify-center">
+                <img src="https://static-ux.mustit.co.kr/img/front/header/icon_header_cart.svg" alt="장바구니">
+              </span>
+              <p>
+                장바구니
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  메뉴영역  -->
+    <div class="menu-area">
+      <div class="con flex h-full justify-center">
+        <nav class="product-menu">
+          <ul class="flex h-full">
+            <li>
+              <a href="#">여성</a>
+              <div class="second-menu con-min-width">
+                <div class="con">
+                  <ul class="flex">
+                    <li class="px-3">
+                      <a href="#">의류</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">코트/자켓</a></li>
+                        <li><a href="#">니트</a></li>
+                        <li><a href="#">탑</a></li>
+                        <li><a href="#">블라우스/셔츠</a></li>
+                        <li><a href="#">원피스</a></li>
+                        <li><a href="#">팬츠</a></li>
+                        <li><a href="#">스커트</a></li>
+                        <li><a href="#">언더웨어/라운지웨어</a></li>
+                        <li><a href="#">스포츠웨어/아웃도어</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">슈즈</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">스니커즈</a></li>
+                        <li><a href="#">샌들/슬리퍼</a></li>
+                        <li><a href="#">로퍼</a></li>
+                        <li><a href="#">플랫</a></li>
+                        <li><a href="#">힐</a></li>
+                        <li><a href="#">드레스슈즈</a></li>
+                        <li><a href="#">부츠/워커</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">가방</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">크로스백</a></li>
+                        <li><a href="#">클러치/파우치</a></li>
+                        <li><a href="#">토트백</a></li>
+                        <li><a href="#">숄더백</a></li>
+                        <li><a href="#">백팩</a></li>
+                        <li><a href="#">더플백</a></li>
+                        <li><a href="#">러기지백</a></li>
+                        <li><a href="#">기타</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">액세서리</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">지갑</a></li>
+                        <li><a href="#">주얼리</a></li>
+                        <li><a href="#">시계</a></li>
+                        <li><a href="#">모자</a></li>
+                        <li><a href="#">벨트</a></li>
+                        <li><a href="#">키링</a></li>
+                        <li><a href="#">아이웨어</a></li>
+                        <li><a href="#">목도리/스카프</a></li>
+                        <li><a href="#">장갑</a></li>
+                        <li><a href="#">헤어액세서리</a></li>
+                        <li><a href="#">손수건</a></li>
+                        <li><a href="#">양말/스타킹</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#">남성</a>
+              <div class="second-menu con-min-width">
+                <div class="con">
+                  <ul class="flex">
+                    <li class="px-3">
+                      <a href="#">의류</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="/usr/product/list?categoryId=1">코트/자켓</a></li>
+                        <li><a href="/usr/product/list?categoryId=2">니트</a></li>
+                        <li><a href="#">탑</a></li>
+                        <li><a href="#">셔츠</a></li>
+                        <li><a href="#">팬츠</a></li>
+                        <li><a href="#">수트</a></li>
+                        <li><a href="#">언더웨어/라운지웨어</a></li>
+                        <li><a href="#">스포츠웨어/아웃도어</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">슈즈</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="/usr/product/list?categoryId=3">스니커즈</a></li>
+                        <li><a href="#">샌들/슬리퍼</a></li>
+                        <li><a href="#">로퍼</a></li>
+                        <li><a href="#">드레스슈즈</a></li>
+                        <li><a href="#">부츠/워커</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">가방</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">크로스백</a></li>
+                        <li><a href="#">클러치/파우치</a></li>
+                        <li><a href="#">토트백</a></li>
+                        <li><a href="#">브리프케이스</a></li>
+                        <li><a href="#">백팩</a></li>
+                        <li><a href="#">더플백</a></li>
+                        <li><a href="#">러기지백</a></li>
+                        <li><a href="#">기타</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">액세서리</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">지갑</a></li>
+                        <li><a href="#">주얼리</a></li>
+                        <li><a href="#">시계</a></li>
+                        <li><a href="#">모자</a></li>
+                        <li><a href="#">벨트/서스펜더</a></li>
+                        <li><a href="#">모자</a></li>
+                        <li><a href="#">키링</a></li>
+                        <li><a href="#">아이웨어</a></li>
+                        <li><a href="#">목도리/스카프</a></li>
+                        <li><a href="#">장갑</a></li>
+                        <li><a href="#">넥타이</a></li>
+                        <li><a href="#">손수건</a></li>
+                        <li><a href="#">양말</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#">키즈</a>
+              <div class="second-menu con-min-width">
+                <div class="con">
+                  <ul class="flex">
+                    <li class="px-3">
+                      <a href="#">의류</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">코트/자켓</a></li>
+                        <li><a href="#">탑</a></li>
+                        <li><a href="#">팬츠</a></li>
+                        <li><a href="#">스커트</a></li>
+                        <li><a href="#">원피스</a></li>
+                        <li><a href="#">세트</a></li>
+                        <li><a href="#">바디수트</a></li>
+                        <li><a href="#">언더웨어</a></li>
+                        <li><a href="#">수영복</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">슈즈</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">스니커즈</a></li>
+                        <li><a href="#">샌들/슬리퍼</a></li>
+                        <li><a href="#">젤리슈즈</a></li>
+                        <li><a href="#">구두/플랫</a></li>
+                        <li><a href="#">부츠</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">액세서리</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">모자</a></li>
+                        <li><a href="#">목도리</a></li>
+                        <li><a href="#">장갑</a></li>
+                        <li><a href="#">가방</a></li>
+                        <li><a href="#">헤어ACC</a></li>
+                        <li><a href="#">양말/벨트</a></li>
+                        <li><a href="#">패션소품</a></li>
+                        <li><a href="#">시계</a></li>
+                        <li><a href="#">기타 액세서리</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">토이</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">블록/게임완구</a></li>
+                        <li><a href="#">로봇/작동완구</a></li>
+                        <li><a href="#">승용/스포츠완구</a></li>
+                        <li><a href="#">교육완구</a></li>
+                        <li><a href="#">인형</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">유아동용품</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">외출용품</a></li>
+                        <li><a href="#">실내용품</a></li>
+                        <li><a href="#">스킨/바디케어</a></li>
+                        <li><a href="#">출산/육아용품</a></li>
+                        <li><a href="#">기타 유아동용품</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#">라이프</a>
+              <div class="second-menu con-min-width">
+                <div class="con">
+                  <ul class="flex">
+                    <li class="px-3">
+                      <a href="#">뷰티</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">스킨케어/선케어</a></li>
+                        <li><a href="#">바디케어</a></li>
+                        <li><a href="#">메이크업</a></li>
+                        <li><a href="#">향수</a></li>
+                        <li><a href="#">미용기기/용품</a></li>
+                        <li><a href="#">헤어케어</a></li>
+                        <li><a href="#">남성 뷰티</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">테크</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">사운드</a></li>
+                        <li><a href="#">생활 가전</a></li>
+                        <li><a href="#">주방 가전</a></li>
+                        <li><a href="#">계절 가전</a></li>
+                        <li><a href="#">디지털 디바이스</a></li>
+                        <li><a href="#">테크액세서리</a></li>
+                        <li><a href="#">기타 테크 아이템</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">리빙</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">테이블 웨어</a></li>
+                        <li><a href="#">키친 웨어</a></li>
+                        <li><a href="#">인테리어/소품</a></li>
+                        <li><a href="#">패브릭</a></li>
+                        <li><a href="#">가구</a></li>
+                        <li><a href="#">클린/배쓰</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">골프</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">여성 골프웨어</a></li>
+                        <li><a href="#">남성 골프웨어</a></li>
+                        <li><a href="#">골프화</a></li>
+                        <li><a href="#">골프 잡화</a></li>
+                        <li><a href="#">골프 가방</a></li>
+                        <li><a href="#">골프 용품</a></li>
+                      </ul>
+                    </li>
+                    <li class="px-3">
+                      <a href="#">스포츠용품</a>
+                      <p class="sub-line"></p>
+                      <ul>
+                        <li><a href="#">아웃도어용품</a></li>
+                        <li><a href="#">어반</a></li>
+                        <li><a href="#">썸머</a></li>
+                        <li><a href="#">윈터</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </heaeder>
+
+<!--  화면 전체 레이어용 -->
+
+<main>

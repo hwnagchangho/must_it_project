@@ -1,0 +1,66 @@
+.find-area__header {
+    text-align:center;
+}
+
+.find-area__header > .mini_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #141414;
+}
+.find-area__header > .line{
+    width: 24px;
+    margin: 5px auto;
+    border-top: 2px solid #d01f3c;
+}
+
+.find_box{
+    width:500px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+
+.find_box li{
+        width: 250px;
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+        color: #333;
+        float: left;
+        text-align: center;
+        cursor: pointer;
+}
+
+.find_box > .sub_box li:hover{
+        border-color: #333;
+        background-color: #333;
+        color: #fff;
+}
+
+.sub_desc {
+    text-align:center;
+    margin:10px 0;
+}
+
+.find_button > input:first-child {
+    width: 384px;
+    font-size: 14px;
+    padding: 10px;
+    background-color: #d01f3c;
+    color: #fff;
+    border: 1px solid #d01f3c;
+    outline: none;
+    cursor:pointer;
+
+}
+.find_button > input:nth-child(2) {
+    width: 384px;
+    font-size: 14px;
+    padding: 10px;
+    background-color: #888888;
+    color: #fff;
+    border: 1px solid #888888;
+    outline: none;
+    cursor:pointer;
+
+}
